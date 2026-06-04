@@ -31,6 +31,9 @@ public class Skeleton : MonoBehaviour
     public float attackCooldown = 1f;
     public float nextAttackTime = 0f;
 
+    [Header("Attack")]
+    public Coroutine attacking;
+
 
     public EnemySwordAttack swordCollision;
     public EnemyDrops itemDrop;
@@ -87,7 +90,8 @@ public class Skeleton : MonoBehaviour
             if (Time.time > nextAttackTime)
             {
                 nextAttackTime = Time.time + attackCooldown;
-                Attack();
+                if (isDead != true)
+                    Attack();
             }
         }
 
@@ -168,14 +172,15 @@ public class Skeleton : MonoBehaviour
 
         HeroKnight hero = player.GetComponent<HeroKnight>();
         if (isDead != true)
-            StartCoroutine(swordCollision.SwordCollider());
+            attacking=StartCoroutine(swordCollision.SwordCollider());
 
     }
 
     public void TakeDamage(int amount)
     {
         if (isDead) return;
-
+        if (attacking != null)
+         StopCoroutine(attacking);
         hp -= amount;
 
 

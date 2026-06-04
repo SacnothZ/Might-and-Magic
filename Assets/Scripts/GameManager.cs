@@ -4,12 +4,19 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
+    public HeroKnight hero;
 
+
+    [Header("Canvas stats: ")]
     public int score;
     public int timeRemaining = 300;
     public int extraScore;
+    [Header("Hero specific: ")]
     public int keyAmount = 0;
     public int heroLives = 4;
+    [Header("Checkpoint: ")]
+    public Vector2 heroCheckpointLocation;
+
     
 
     public bool levelEnded = false;
@@ -62,16 +69,22 @@ public class GameManager : MonoBehaviour
 
     public void CompleteLevel1()
     {
+        
         LoadLevel2();
+        
     }
 
     public void CompleteLevel2()
     {
+        
         LoadLevel3();
+        
     }
     public void CompleteLevel3()
     {
+        
         LoadTitleScreen();
+        
     }
 
 

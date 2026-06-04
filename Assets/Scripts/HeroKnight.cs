@@ -50,6 +50,8 @@ public class HeroKnight : MonoBehaviour
     public Transform firePoint;
     public float magicCooldown = 2f;
 
+ 
+
 
 
 
@@ -60,6 +62,7 @@ public class HeroKnight : MonoBehaviour
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
+        GameManager.gameManager.heroCheckpointLocation = new Vector2(transform.position.x, transform.position.y);
     }
 
 
@@ -67,7 +70,7 @@ public class HeroKnight : MonoBehaviour
 
     void Update()
     {
-        if (isDead)
+        if (isDead)         
             return;
 
         m_timeSinceAttack += Time.deltaTime;    // Increase timer that controls attack combo
@@ -214,6 +217,11 @@ public class HeroKnight : MonoBehaviour
 
     }
 
+
+    ///////////////////
+    //Death and revival
+    ///////////////////
+
     private void Die()
     {
         if (isDead)
@@ -223,7 +231,27 @@ public class HeroKnight : MonoBehaviour
         heroHealth = 0;
         m_body2d.linearVelocity = Vector2.zero;
         m_animator.SetTrigger("Death");
+        StartCoroutine(Revive());
     }
+
+    public IEnumerator Revive()
+    {
+        yield return new WaitForSeconds(2);
+        if (GameManager.gameManager.heroLives > 0)
+        {
+            heroHealth = 100;
+            heroMana = 100;
+            isDead = false;
+            transform.position = GameManager.gameManager.heroCheckpointLocation;
+            m_animator.Play("Idle");
+        }
+        GameManager.gameManager.heroLives--;
+    }
+
+
+
+
+
 
     private void Hurt()
     {
@@ -294,7 +322,5 @@ public class HeroKnight : MonoBehaviour
         }
 
     }
-
-
 
 }
