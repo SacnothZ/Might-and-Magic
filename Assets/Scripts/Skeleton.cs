@@ -168,11 +168,13 @@ public class Skeleton : MonoBehaviour
 
     void Attack()
     {
-        anim.SetTrigger("Attack");
-
         HeroKnight hero = player.GetComponent<HeroKnight>();
-        if (isDead != true)
-            attacking=StartCoroutine(swordCollision.SwordCollider());
+        if (!isDead && !hero.isDead)
+        {
+            anim.SetTrigger("Attack");
+            attacking = StartCoroutine(swordCollision.SwordCollider());
+        }
+
 
     }
 

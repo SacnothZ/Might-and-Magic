@@ -64,7 +64,7 @@ public class FlyingEye : MonoBehaviour
         {
             rb.linearVelocity = Vector2.zero;
 
-            if (Time.time > nextAttackTime)
+            if (Time.time > nextAttackTime && hero.heroHealth > 0)
             {
                 nextAttackTime = Time.time + attackCooldown;
 

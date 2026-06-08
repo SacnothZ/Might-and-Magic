@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,20 +7,23 @@ public class GameManager : MonoBehaviour
     public static GameManager gameManager;
     public HeroKnight hero;
 
+    
 
     [Header("Canvas stats: ")]
     public int score;
     public int timeRemaining = 300;
     public int extraScore;
     [Header("Hero specific: ")]
-    public int keyAmount = 0;
     public int heroLives = 4;
     [Header("Checkpoint: ")]
     public Vector2 heroCheckpointLocation;
-
-    
+    [Header("Keys: ")]
+    public TMP_Text keyText;
+    public int keyAmount = 0;
 
     public bool levelEnded = false;
+
+
 
     private void Awake()
     {
@@ -35,7 +39,14 @@ public class GameManager : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        //if(gameOver && (Input.GetKeyDown("escape") || Input.GetKeyDown("space") || Input.GetMouseButtonDown(0)) )
+        //{
+        //    LoadTitleScreen();
+        //}
 
+    }
 
 
 
@@ -67,6 +78,58 @@ public class GameManager : MonoBehaviour
 
 
 
+    ////////////////////////////////////////////////
+    //On New Scene Load Data (for GameOver and Keys)
+    ////////////////////////////////////////////////
+
+
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+   
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+
+
+        if (scene.name == "2-Level 2")
+        {
+            GameObject keyUiObject = GameObject.Find("KeysUI");
+            if (keyUiObject != null)
+            {
+                keyText = keyUiObject.GetComponent<TMP_Text>();
+                RefreshKeyInfo();
+            }
+           
+        }
+
+
+
+    }
+
+    public void RefreshKeyInfo()
+    {
+        keyText.text = "Keys: " + keyAmount + " / 3";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void CompleteLevel1()
     {
         
@@ -93,6 +156,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadTitleScreen()
     {
+
         ResetTime();
         ResetScore();
         ResetKeys();
@@ -100,6 +164,7 @@ public class GameManager : MonoBehaviour
     }
     public void LoadLevel1()
     {
+ 
         ResetScore();
         ResetTime();
         ResetKeys();
@@ -109,14 +174,22 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel2()
     {
+  
         ResetTime();
         ResetKeys();
         SceneManager.LoadScene("2-Level 2");
     }
     public void LoadLevel3()
     {
+
         ResetTime();
         SceneManager.LoadScene("3-Level 3");
     }
+
+        
+
+    
+    
+
 
 }

@@ -27,7 +27,10 @@ public class EnemySwordAttack : MonoBehaviour
             swordCollider.enabled = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+
+
+
+    private void OnTriggerEnter2D(Collider2D other) 
     {
         if (other.CompareTag("Player"))
         {
@@ -47,8 +50,22 @@ public class EnemySwordAttack : MonoBehaviour
                     return;
                 }
 
-                hero.heroHealth -= 5;
-                hero.m_animator.SetTrigger("Hurt");
+                ///////////////////////////////
+                // Damange based on enemy type
+                ///////////////////////////////
+                 
+                if (transform.parent.name == "Level1-Goblin" || transform.parent.name == "Level1-Goblin(Clone)")
+                {
+                    hero.heroHealth -= 10;
+                    hero.m_animator.SetTrigger("Hurt");
+                }
+                else if (transform.parent.name == "Level2-Skeleton" || transform.parent.name == "Level1-RedSkeleton" || transform.parent.name == "Level2-Skeleton(Clone)" || transform.parent.name == "Level1-RedSkeleton(Clone)")
+                {
+                    hero.heroHealth -= 25;
+                    hero.m_animator.SetTrigger("Hurt");
+                }
+                
+
             }
         }
     }

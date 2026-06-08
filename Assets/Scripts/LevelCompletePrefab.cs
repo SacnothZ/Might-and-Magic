@@ -57,7 +57,7 @@ public class LevelCompletePrefab : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (CompareTag("CastleEntrance") && collision.gameObject.CompareTag("Player"))
+        if (CompareTag("CastleEntrance") && collision.gameObject.CompareTag("Player"))      // scenes must have tags in per scene.
         {
             levelComplete = true;
             hero.stopMoving = true;
@@ -67,7 +67,7 @@ public class LevelCompletePrefab : MonoBehaviour
             GameManager.gameManager.score += GameManager.gameManager.extraScore;
            
         }
-        if (CompareTag("CastleDoor") && (collision.gameObject.CompareTag("Player") && GameManager.gameManager.keyAmount == 3))
+        else if (CompareTag("CastleDoor") && (collision.gameObject.CompareTag("Player") && GameManager.gameManager.keyAmount == 3))
         {
             levelComplete = true;
             hero.stopMoving = true;

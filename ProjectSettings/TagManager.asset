@@ -16,6 +16,12 @@ TagManager:
   - GroundSensor
   - Key
   - CastleDoor
+  - Toxic
+  - Spring
+  - Checkpoint
+  - CastleEntrance
+  - Background
+  - Lava
   layers:
   - Default
   - TransparentFX

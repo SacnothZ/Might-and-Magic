@@ -5,6 +5,9 @@ public class HeroKnight : MonoBehaviour
 {
 
 
+    public GameOverUI gameoverui;
+
+
     [SerializeField] float m_rollForce = 6.0f;
     [SerializeField] bool m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
@@ -15,7 +18,6 @@ public class HeroKnight : MonoBehaviour
     public Animator m_animator;
     private Rigidbody2D m_body2d;
     private Sensor_HeroKnight m_groundSensor;
-    private bool m_isWallSliding = false;
     private bool m_grounded = false;
     private bool m_rolling = false;
     private int m_facingDirection = 1;
@@ -27,7 +29,6 @@ public class HeroKnight : MonoBehaviour
 
     public bool isDead = false;
     public HeroSwordAttack swordCollider;
-
     public bool stopMoving = false;
 
     [Header("Hero Stats: ")]
@@ -61,6 +62,7 @@ public class HeroKnight : MonoBehaviour
         swordCollider = GetComponentInChildren<HeroSwordAttack>();
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
+        gameoverui = FindAnyObjectByType<GameOverUI>(FindObjectsInactive.Include);     // Finding inaktiv objects to prevent null.
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_HeroKnight>();
         GameManager.gameManager.heroCheckpointLocation = new Vector2(transform.position.x, transform.position.y);
     }
@@ -70,7 +72,7 @@ public class HeroKnight : MonoBehaviour
 
     void Update()
     {
-        if (isDead)         
+        if (isDead)
             return;
 
         m_timeSinceAttack += Time.deltaTime;    // Increase timer that controls attack combo
@@ -120,7 +122,6 @@ public class HeroKnight : MonoBehaviour
         else if (isBlocking && m_grounded)
             m_body2d.linearVelocity = new Vector2(0, m_body2d.linearVelocity.y);
 
-
         m_animator.SetFloat("AirSpeedY", m_body2d.linearVelocity.y);    //Set AirSpeed in animator
 
 
@@ -137,22 +138,7 @@ public class HeroKnight : MonoBehaviour
         ///////////
         else if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.5f && !m_rolling && !stopMoving)
         {
-            StartCoroutine(swordCollider.SwordColliderInstant());
-            m_currentAttack++;
-
-            // Loop back to one after third attack
-            if (m_currentAttack > 3)
-                m_currentAttack = 1;
-
-            // Reset Attack combo if time since last attack is too large
-            if (m_timeSinceAttack > 1.0f)
-                m_currentAttack = 1;
-
-            // Call one of three attack animations "Attack1", "Attack2", "Attack3"
-            m_animator.SetTrigger("Attack" + m_currentAttack);
-
-            // Reset timer
-            m_timeSinceAttack = 0.0f;
+            Attack();
         }
 
         ///////////
@@ -169,14 +155,11 @@ public class HeroKnight : MonoBehaviour
         ///////////
         else if (Input.GetMouseButtonDown(1) && !m_rolling && !stopMoving)
         {
-            isBlocking = true;
-            m_animator.SetTrigger("Block");
-            m_animator.SetBool("IdleBlock", true);
+            Block();
         }
         else if (Input.GetMouseButtonUp(1))
         {
-            isBlocking = false;
-            m_animator.SetBool("IdleBlock", false);
+            NoBlock();
         }
 
 
@@ -186,11 +169,7 @@ public class HeroKnight : MonoBehaviour
         ///////////
         else if (Input.GetKeyDown("space") && m_grounded && !m_rolling && !isBlocking && !stopMoving)
         {
-            m_animator.SetTrigger("Jump");
-            m_grounded = false;
-            m_animator.SetBool("Grounded", m_grounded);
-            m_body2d.linearVelocity = new Vector2(m_body2d.linearVelocity.x, m_jumpForce);
-            m_groundSensor.Disable(0.2f);
+            Jump();
         }
 
         ///////////////////
@@ -218,9 +197,16 @@ public class HeroKnight : MonoBehaviour
     }
 
 
-    ///////////////////
-    //Death and revival
-    ///////////////////
+
+
+
+
+
+
+
+    //////////////////////////////
+    //Death and revival function
+    //////////////////////////////
 
     private void Die()
     {
@@ -244,19 +230,75 @@ public class HeroKnight : MonoBehaviour
             isDead = false;
             transform.position = GameManager.gameManager.heroCheckpointLocation;
             m_animator.Play("Idle");
+            GameManager.gameManager.heroLives--;
         }
-        GameManager.gameManager.heroLives--;
+        else
+        {
+            gameoverui.GameOver();
+        }
+
     }
 
 
 
 
 
+    ///////////////////////////////
+    // Attack function
+    ///////////////////////////////
+    public void Attack()
+    {
+        if (Time.timeScale == 0f)
+            return;
+        StartCoroutine(swordCollider.SwordColliderInstant());
+        m_currentAttack++;
 
-    private void Hurt()
+        // Loop back to one after third attack
+        if (m_currentAttack > 3)
+            m_currentAttack = 1;
+
+        // Reset Attack combo if time since last attack is too large
+        if (m_timeSinceAttack > 1.0f)
+            m_currentAttack = 1;
+        
+        m_animator.SetTrigger("Attack" + m_currentAttack);  // Call one of three attack animations "Attack1", "Attack2", "Attack3"
+        m_timeSinceAttack = 0.0f;       // Reset timer
+    }
+    ///////////////////////////////
+    // Block function
+    ///////////////////////////////
+    public void Block()
+    {
+        if (Time.timeScale == 0f)
+            return;
+        isBlocking = true;
+        m_animator.SetTrigger("Block");
+        m_animator.SetBool("IdleBlock", true);
+    }
+    public void NoBlock()
+    {
+        if (Time.timeScale == 0f)
+            return;
+        isBlocking = false;
+        m_animator.SetBool("IdleBlock", false);
+    }
+
+    public void Jump()
+    {
+        if (Time.timeScale == 0f)
+            return;
+        m_animator.SetTrigger("Jump");
+        m_grounded = false;
+        m_animator.SetBool("Grounded", m_grounded);
+        m_body2d.linearVelocity = new Vector2(m_body2d.linearVelocity.x, m_jumpForce);
+        m_groundSensor.Disable(0.2f);
+    }
+
+    public void Hurt()
     {
         m_animator.SetTrigger("Hurt");
     }
+
 
 
 
@@ -305,6 +347,8 @@ public class HeroKnight : MonoBehaviour
     ///////////////////////////////
     public void Casting()
     {
+        if (Time.timeScale == 0f)
+            return;
         if (heroMana >= 20)
         {
             m_animator.SetTrigger("Magic");

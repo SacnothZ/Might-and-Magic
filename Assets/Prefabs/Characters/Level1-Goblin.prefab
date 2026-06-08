@@ -249,7 +249,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a350851bf0270f04490b91dddd155df0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -329,3 +329,4 @@ MonoBehaviour:
   manaPotionPrefab: {fileID: 8686625889948144187, guid: cb24d07c75c86b747a2ed2cfc522530f, type: 3}
   powerPotionPrefab: {fileID: 7929489680202071573, guid: 1ff3eeadf6f5bb346ad248170b9ac414, type: 3}
   diamondPrefab: {fileID: 7909406876597277295, guid: 35b14e844b600ed458ca00f0ad147995, type: 3}
+  keyPrefab: {fileID: 0}

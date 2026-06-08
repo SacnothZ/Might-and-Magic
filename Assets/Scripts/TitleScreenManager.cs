@@ -63,9 +63,6 @@ public class TitleScreenManager : MonoBehaviour
 
 
 
-
-
-
     IEnumerator PressAnyKeyBlink()
     {
         while (!keyPressed)
@@ -74,6 +71,13 @@ public class TitleScreenManager : MonoBehaviour
             yield return new WaitForSeconds(blinkDuration);
         }
     }
+
+
+
+    ////////////////
+    // Main Buttons
+    ////////////////
+
 
     public void PlayButton()
     {
@@ -105,6 +109,10 @@ public class TitleScreenManager : MonoBehaviour
 #endif
     }
 
+    ////////////////
+    // Level Select
+    ////////////////
+
     public void LoadLevel1New()
     {
         GameManager.gameManager.heroLives = 4;
@@ -128,11 +136,9 @@ public class TitleScreenManager : MonoBehaviour
 
 
 
-
-
-
-
-
+    ////////////////
+    //Option Buttons
+    ////////////////
 
 
 
@@ -151,4 +157,16 @@ public class TitleScreenManager : MonoBehaviour
     {
         Screen.fullScreen = isFullscreen;
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }

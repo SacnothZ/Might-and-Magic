@@ -2,15 +2,29 @@ using UnityEngine;
 
 public class DeathPoint : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    HeroKnight hero;
     void Start()
     {
-        
+        hero = GameObject.Find("Player").GetComponent<HeroKnight>();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
     }
+
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+        }
+        else if(collision.CompareTag("Player"))
+            hero.heroHealth = 0;
+    }
+
+
 }

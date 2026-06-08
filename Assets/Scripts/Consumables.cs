@@ -1,14 +1,17 @@
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Consumables : MonoBehaviour
 {
     HeroKnight hero;
+    
 
     void Start()
     {
         hero = GameObject.Find("Player").GetComponent<HeroKnight>();
+        
     }
 
     //////////////////////
@@ -64,6 +67,7 @@ public class Consumables : MonoBehaviour
             if (!hero.isDead)
             {
                 GameManager.gameManager.keyAmount += 1;
+                GameManager.gameManager.RefreshKeyInfo();
                 Destroy(gameObject);
             }
         }
@@ -83,6 +87,7 @@ public class Consumables : MonoBehaviour
             if (!hero.isDead)
             {
                 GameManager.gameManager.keyAmount += 1;
+                GameManager.gameManager.RefreshKeyInfo();
                 Destroy(gameObject);
             }
         }
