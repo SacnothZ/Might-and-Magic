@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300150, guid: 7810966f0f690954c87305933cabf2b0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.54901963, g: 0.31735593, b: 0.062745094, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b00ec2411845e4aaf3ae28cae2327e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CheckPointStatue
+  thisCheckpointReached: 0
 --- !u!1 &4271069369380184246
 GameObject:
   m_ObjectHideFlags: 0

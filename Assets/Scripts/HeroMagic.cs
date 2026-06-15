@@ -65,7 +65,57 @@ public class HeroMagic : MonoBehaviour
             }
             Destroy(gameObject);
         }
+
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Goblin goblin = collision.gameObject.GetComponent<Goblin>();
+
+            if (goblin != null)
+            {
+                goblin.TakeDamage(10);
+
+            }
+
+            Skeleton skeleton = collision.gameObject.GetComponent<Skeleton>();
+
+            if (skeleton != null)
+            {
+                skeleton.TakeDamage(20);
+
+            }
+
+            Necromancer necromancer = collision.gameObject.GetComponent<Necromancer>();
+            if (necromancer != null)
+            {
+                necromancer.TakeDamage(0);
+            }
+
+            FlyingEye flyingEye = collision.gameObject.GetComponent<FlyingEye>();
+            if (flyingEye != null)
+            {
+                flyingEye.TakeDamage(10);
+
+            }
+
+
+
+            Wizard wizard = collision.gameObject.GetComponent<Wizard>();
+            if (wizard != null)
+            {
+                wizard.TakeDamage(0);
+
+            }
+            Destroy(gameObject);
+        }
+
+
+        if (collision.gameObject.CompareTag("Ground"))
+            Destroy(gameObject);
     }
 
 }

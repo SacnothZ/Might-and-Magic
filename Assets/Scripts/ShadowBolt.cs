@@ -3,7 +3,7 @@ using UnityEngine;
 public class ShadowBolt : MonoBehaviour
 {
     [Header("Stats: ")]
-    public float damage = 10f;
+    public float damage = 40f;
     public float projectileSpeed = 5f;
     public float direction = 1f;
 
@@ -80,4 +80,13 @@ public class ShadowBolt : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

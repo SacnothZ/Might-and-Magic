@@ -5,18 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class TimeLeft : MonoBehaviour
 {
-    
-   
-    
 
+
+
+    
     public TMP_Text timeText;
+    public Coroutine timerCoroutine;
 
     void Start()
     {
-        StartCoroutine(Timer());
+        
+      timerCoroutine=  StartCoroutine(Timer());
     }
 
-   public  IEnumerator Timer()
+
+    public  IEnumerator Timer()
     {
         while (GameManager.gameManager.timeRemaining > 0)
         {
@@ -25,6 +28,7 @@ public class TimeLeft : MonoBehaviour
             GameManager.gameManager.timeRemaining -= 1;
         }
         timeText.text = "Time: 0";
+        
     }
 
 

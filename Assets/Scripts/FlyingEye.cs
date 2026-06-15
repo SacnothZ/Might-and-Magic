@@ -118,6 +118,7 @@ public class FlyingEye : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
 
+        GameManager.gameManager.score += 50;
         Destroy(gameObject, 1f);
 
     }

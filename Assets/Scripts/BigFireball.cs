@@ -4,6 +4,7 @@ public class BigFireBall : MonoBehaviour
 {
     [Header("Stats: ")]
     public float projectileSpeed = 5f;
+    public float protectileDuration = 8;
     public float direction = 1f;
     public float damage = 40f;
 
@@ -25,7 +26,7 @@ public class BigFireBall : MonoBehaviour
         }
 
 
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, protectileDuration);
 
     }
 
@@ -57,4 +58,8 @@ public class BigFireBall : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
+
+
 }

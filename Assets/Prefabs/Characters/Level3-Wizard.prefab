@@ -206,11 +206,11 @@ MonoBehaviour:
   hp: 3
   isDead: 0
   moveSpeed: 2
-  detectionRange: 10
+  detectionRange: 75
   attackRange: 4
   bFireballPrefab: {fileID: 1765270625934045080, guid: 9f14400529963654dbfc8aabd6171342, type: 3}
   bFirePoint: {fileID: 9006342551149175971}
-  attackCooldown: 2
+  attackCooldown: 3.5
 --- !u!1 &5596612164986700269
 GameObject:
   m_ObjectHideFlags: 0

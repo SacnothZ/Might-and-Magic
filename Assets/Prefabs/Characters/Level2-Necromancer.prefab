@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db21e61fb680efd41a582607952591b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Necromancer
-  hp: 10
+  hp: 20
   isDead: 0
   detectionRangeX: 10
   detectionRangeY: 2

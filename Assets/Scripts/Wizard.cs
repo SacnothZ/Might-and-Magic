@@ -18,7 +18,6 @@ public class Wizard : MonoBehaviour
     [Header("Attack")]
     public GameObject bFireballPrefab;
     public Transform bFirePoint;
-
     public float attackCooldown = 2f;
     float nextAttackTime;
 
@@ -90,7 +89,7 @@ public class Wizard : MonoBehaviour
         isDead = true;
         rb.gravityScale = 2f;       // going down
         rb.linearVelocity = Vector2.zero;   //stop fly
-
+        rb.bodyType = RigidbodyType2D.Static;
         anim.SetTrigger("Death");
 
         GetComponent<Collider2D>().enabled = false;

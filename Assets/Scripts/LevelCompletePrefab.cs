@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,8 +8,13 @@ public class LevelCompletePrefab : MonoBehaviour
     TimeLeft timer;
     public GameObject levelCompleteCanvas;
 
-    
-    
+    [Header("Scores Uis :")]
+    public TMP_Text plainScore;
+    public TMP_Text bonusScore;
+    public TMP_Text totalScore;
+
+
+
     public bool levelComplete;
 
 
@@ -17,14 +23,12 @@ public class LevelCompletePrefab : MonoBehaviour
     {
         levelComplete = false;
         hero = GameObject.Find("Player").GetComponent<HeroKnight>();
+        timer = GameObject.Find("TimeLeftUi").GetComponent<TimeLeft>();
     }
 
 
     void Update()
     {
-
-        timer = GameObject.Find("TimeLeftUi").GetComponent<TimeLeft>();
-
         if (levelComplete && Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().name == "1-Level 1")
         {
             GameManager.gameManager.LoadLevel2();
@@ -34,13 +38,8 @@ public class LevelCompletePrefab : MonoBehaviour
         {
             GameManager.gameManager.LoadLevel3();
         }
-        // else if (levelComplete && Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().name == "3-Level3")
-        //  GameManager.gameManager.LoadTitleScreen();
-
-
-
-
-
+        else if (levelComplete && Input.GetKeyDown(KeyCode.Space) && SceneManager.GetActiveScene().name == "3-Level 3")
+          GameManager.gameManager.LoadTitleScreen();
     }
 
 
@@ -61,25 +60,62 @@ public class LevelCompletePrefab : MonoBehaviour
         {
             levelComplete = true;
             hero.stopMoving = true;
+            hero.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             levelCompleteCanvas.SetActive(true);
-            StopCoroutine(timer.Timer());
+            timer.StopCoroutine(timer.timerCoroutine);
+
+
+            plainScore.text = GameManager.gameManager.score.ToString();
             GameManager.gameManager.extraScore = 10 * GameManager.gameManager.timeRemaining;
+            bonusScore.text = GameManager.gameManager.extraScore.ToString();
+            totalScore.text = (GameManager.gameManager.score + GameManager.gameManager.extraScore).ToString();
             GameManager.gameManager.score += GameManager.gameManager.extraScore;
-           
+
+
+
+
+
+
         }
         else if (CompareTag("CastleDoor") && (collision.gameObject.CompareTag("Player") && GameManager.gameManager.keyAmount == 3))
         {
             levelComplete = true;
             hero.stopMoving = true;
+            hero.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             levelCompleteCanvas.SetActive(true);
-            StopCoroutine(timer.Timer());
+            timer.StopCoroutine(timer.timerCoroutine);
+
+
+            plainScore.text = GameManager.gameManager.score.ToString();
             GameManager.gameManager.extraScore = 10 * GameManager.gameManager.timeRemaining;
+            bonusScore.text = GameManager.gameManager.extraScore.ToString();
+            totalScore.text = (GameManager.gameManager.score + GameManager.gameManager.extraScore).ToString();
             GameManager.gameManager.score += GameManager.gameManager.extraScore;
-          
+
         }
+
+
+
+
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (CompareTag("Princess") && (collision.gameObject.CompareTag("Player")))
+        {
+            levelComplete = true;
+            hero.stopMoving = true;
+            hero.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            levelCompleteCanvas.SetActive(true);
+            timer.StopCoroutine(timer.timerCoroutine);
 
 
+            plainScore.text = GameManager.gameManager.score.ToString();
+            GameManager.gameManager.extraScore = 10 * GameManager.gameManager.timeRemaining;
+            bonusScore.text = GameManager.gameManager.extraScore.ToString();
+            totalScore.text = (GameManager.gameManager.score + GameManager.gameManager.extraScore).ToString();
+            GameManager.gameManager.score += GameManager.gameManager.extraScore;
 
+        }
+    }
 }

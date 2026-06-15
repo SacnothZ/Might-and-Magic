@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Canvas stats: ")]
     public int score;
-    public int timeRemaining = 300;
     public int extraScore;
+    public int timeRemaining = 300;
+    
     [Header("Hero specific: ")]
     public int heroLives = 4;
     [Header("Checkpoint: ")]

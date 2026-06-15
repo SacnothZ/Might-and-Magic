@@ -11,6 +11,8 @@ public class HeroKnight : MonoBehaviour
     [SerializeField] float m_rollForce = 6.0f;
     [SerializeField] bool m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
+   
+    
 
 
 
@@ -49,7 +51,8 @@ public class HeroKnight : MonoBehaviour
     [Header("Magic")]
     public GameObject heroMagicPrefab;
     public Transform firePoint;
-    public float magicCooldown = 2f;
+    public float magicCooldown = 1f;
+    public float nextMagicTime = 0f;
 
  
 
@@ -347,10 +350,13 @@ public class HeroKnight : MonoBehaviour
     ///////////////////////////////
     public void Casting()
     {
-        if (Time.timeScale == 0f)
+        if (Time.time < nextMagicTime || Time.timeScale == 0f)      // pause or cooldown
             return;
         if (heroMana >= 20)
         {
+            nextMagicTime = Time.time + magicCooldown;
+            StartCoroutine(CastingPause());
+
             m_animator.SetTrigger("Magic");
             heroMana -= 20;
             GameObject heroMagic = Instantiate(heroMagicPrefab, firePoint.position, transform.rotation);
@@ -366,5 +372,20 @@ public class HeroKnight : MonoBehaviour
         }
 
     }
+
+
+    private IEnumerator CastingPause()
+    {
+        stopMoving = true;
+        m_body2d.linearVelocity = new Vector2(0, m_body2d.linearVelocity.y); 
+        yield return new WaitForSeconds(0.3f);
+        stopMoving = false;
+    }
+
+
+
+
+
+
 
 }

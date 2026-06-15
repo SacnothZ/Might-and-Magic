@@ -165,6 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f686e76a8c6504686ef1676f12a198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShadowBolt
-  damage: 10
-  projectileSpeed: 5
+  damage: 40
+  projectileSpeed: 8
   direction: 1
