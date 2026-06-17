@@ -330,12 +330,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5034bc83802944c9bca57c55e08978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameoverui: {fileID: 0}
   m_rollForce: 6
   m_noBlood: 0
   m_slideDust: {fileID: 1038168246061390451, guid: 8b8c8cc6774fb074cb9139cc631b108e, type: 3}
   m_animator: {fileID: 0}
   isDead: 0
   swordCollider: {fileID: 8197232089080102528}
+  stopMoving: 0
   heroHealth: 100
   heroMana: 100
   heroDamage: 10
@@ -348,6 +350,8 @@ MonoBehaviour:
   heroMagicPrefab: {fileID: 7114487803492161240, guid: 92af11cc020b6804e9ca47efa06e3a47, type: 3}
   firePoint: {fileID: 1953144852977158715}
   magicCooldown: 2
+  nextMagicTime: 0
+  attackSound: {fileID: 8300000, guid: 2b21ef916f6943c439b71a7c74568878, type: 3}
 --- !u!95 &8622843177948119843
 Animator:
   serializedVersion: 7

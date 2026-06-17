@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,9 @@ public class LevelCompletePrefab : MonoBehaviour
     HeroKnight hero;
     TimeLeft timer;
     public GameObject levelCompleteCanvas;
+    public AudioClip levelCompleteSound;
+    
+    
 
     [Header("Scores Uis :")]
     public TMP_Text plainScore;
@@ -70,6 +74,9 @@ public class LevelCompletePrefab : MonoBehaviour
             bonusScore.text = GameManager.gameManager.extraScore.ToString();
             totalScore.text = (GameManager.gameManager.score + GameManager.gameManager.extraScore).ToString();
             GameManager.gameManager.score += GameManager.gameManager.extraScore;
+            MusicManager.instance.musicSource.Stop();
+            SoundFxManager.instance.PlaySoundFxClip(levelCompleteSound, transform, 1f);
+
 
 
 
@@ -91,6 +98,8 @@ public class LevelCompletePrefab : MonoBehaviour
             bonusScore.text = GameManager.gameManager.extraScore.ToString();
             totalScore.text = (GameManager.gameManager.score + GameManager.gameManager.extraScore).ToString();
             GameManager.gameManager.score += GameManager.gameManager.extraScore;
+            MusicManager.instance.musicSource.Stop();
+            SoundFxManager.instance.PlaySoundFxClip(levelCompleteSound, transform, 1f);
 
         }
 
@@ -115,6 +124,8 @@ public class LevelCompletePrefab : MonoBehaviour
             bonusScore.text = GameManager.gameManager.extraScore.ToString();
             totalScore.text = (GameManager.gameManager.score + GameManager.gameManager.extraScore).ToString();
             GameManager.gameManager.score += GameManager.gameManager.extraScore;
+            MusicManager.instance.musicSource.Stop();
+            SoundFxManager.instance.PlaySoundFxClip(levelCompleteSound, transform, 1f);
 
         }
     }

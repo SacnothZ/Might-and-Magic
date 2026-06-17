@@ -2267,6 +2267,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1202345707592968624, guid: 977598ec1a26e8f44bf2ff0cf81f6b86, type: 3}
   m_PrefabInstance: {fileID: 82547237}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1018215072
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1303197521996037094, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a737d510d11e944dbc359a87587737e, type: 3}
+    - target: {fileID: 6171022426562886631, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171022426562886631, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171022426562886631, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171022426562886631, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171022426562886631, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171022426562886631, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171022426562886631, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171022426562886631, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171022426562886631, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171022426562886631, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727110087555070240, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
+      propertyPath: m_Name
+      value: SceneMusic
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 247be463c3cdd564fa3f83b3e59855f6, type: 3}
 --- !u!1001 &1021341568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50287,6 +50348,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Castle
       objectReference: {fileID: 0}
+    - target: {fileID: 1177404308478348244, guid: b69b83ab322e76146a06708e0ae8d26c, type: 3}
+      propertyPath: bonusScore
+      value: 
+      objectReference: {fileID: 7872890797825739271}
+    - target: {fileID: 1177404308478348244, guid: b69b83ab322e76146a06708e0ae8d26c, type: 3}
+      propertyPath: plainScore
+      value: 
+      objectReference: {fileID: 7872890797825739272}
+    - target: {fileID: 1177404308478348244, guid: b69b83ab322e76146a06708e0ae8d26c, type: 3}
+      propertyPath: totalScore
+      value: 
+      objectReference: {fileID: 7872890797825739270}
+    - target: {fileID: 1177404308478348244, guid: b69b83ab322e76146a06708e0ae8d26c, type: 3}
+      propertyPath: levelCompleteCanvas
+      value: 
+      objectReference: {fileID: 7872890797825739269}
     - target: {fileID: 1223577535496312365, guid: b69b83ab322e76146a06708e0ae8d26c, type: 3}
       propertyPath: m_Name
       value: CastleDoor
@@ -50342,33 +50419,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1223577535496312365, guid: b69b83ab322e76146a06708e0ae8d26c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6336385806807052919}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b69b83ab322e76146a06708e0ae8d26c, type: 3}
---- !u!1 &6336385806807052918 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1223577535496312365, guid: b69b83ab322e76146a06708e0ae8d26c, type: 3}
-  m_PrefabInstance: {fileID: 6336385806807052917}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6336385806807052919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6336385806807052918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e51fd88a9633ce5458da705e49272dba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelCompletePrefab
-  levelCompleteCanvas: {fileID: 7872890797825739269}
-  plainScore: {fileID: 7872890797825739272}
-  bonusScore: {fileID: 7872890797825739271}
-  totalScore: {fileID: 7872890797825739270}
-  levelComplete: 0
 --- !u!114 &6505522533607776758 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 466088077297863115, guid: a441750b04ce97e4084d42301f596500, type: 3}
@@ -50752,3 +50804,4 @@ SceneRoots:
   - {fileID: 1242335572}
   - {fileID: 1254811723}
   - {fileID: 1464139759}
+  - {fileID: 1018215072}

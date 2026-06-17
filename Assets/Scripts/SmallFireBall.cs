@@ -92,7 +92,33 @@ public class SmallFireBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+
+            Vector2 toPlayer = (hero.transform.position - transform.position).normalized; // where is the hero compared to the enemy
+            Vector2 playerForward = hero.transform.right * hero.transform.localScale.x; //witch direction hero looks at
+            float dot = Vector2.Dot(playerForward, toPlayer);            // do they look at the same direction ? -1=no 1=yes
+            bool isFromFront = dot < 0.0f;
+
+
+
+
+            if (hero != null && hero.isDead != true)
+            {
+                if (hero.isBlocking && isFromFront)
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+                hero.heroHealth -= damage;
+                hero.m_animator.SetTrigger("Hurt");
+                Destroy(gameObject);
+            }
+
+
+        }
+        else if (collision.gameObject.CompareTag("Ground"))
         {
             Destroy(gameObject);
         }

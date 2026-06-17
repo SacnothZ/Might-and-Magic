@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 8879332856553816641}
   - component: {fileID: 9061762443655495621}
   - component: {fileID: 2031873415643816638}
+  - component: {fileID: 1177404308478348244}
   m_Layer: 0
   m_Name: castle_entrance
   m_TagString: Untagged
@@ -249,6 +250,24 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.848175, y: 2.88}
   m_EdgeRadius: 0
+--- !u!114 &1177404308478348244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223577535496312365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51fd88a9633ce5458da705e49272dba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelCompletePrefab
+  levelCompleteCanvas: {fileID: 0}
+  levelCompleteSound: {fileID: 8300000, guid: 7d095e7660994ab4ab97802b5d53767d, type: 3}
+  plainScore: {fileID: 0}
+  bonusScore: {fileID: 0}
+  totalScore: {fileID: 0}
+  levelComplete: 0
 --- !u!1 &5300638505513136626
 GameObject:
   m_ObjectHideFlags: 0

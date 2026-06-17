@@ -8,6 +8,8 @@ public class GameOverUI : MonoBehaviour
     public GameObject gameOverTextObject;
     public TimeLeft timer;
     public bool isGameOver = false;
+    public AudioClip gameOverSound;
+    
 
     void Start()
     {
@@ -39,6 +41,9 @@ public class GameOverUI : MonoBehaviour
         gameOverTextObject.SetActive(true);
         heroData.isDead = true;
         timer.StopCoroutine(timer.timerCoroutine);
+        MusicManager.instance.musicSource.Stop();
+        SoundFxManager.instance.PlaySoundFxClip(gameOverSound, transform, 1f);
+
 
     }
 }

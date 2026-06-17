@@ -54,6 +54,9 @@ public class HeroKnight : MonoBehaviour
     public float magicCooldown = 1f;
     public float nextMagicTime = 0f;
 
+    [Header("Sounds")]
+    public AudioClip attackSound;
+
  
 
 
@@ -266,6 +269,7 @@ public class HeroKnight : MonoBehaviour
         
         m_animator.SetTrigger("Attack" + m_currentAttack);  // Call one of three attack animations "Attack1", "Attack2", "Attack3"
         m_timeSinceAttack = 0.0f;       // Reset timer
+        SoundFxManager.instance.PlaySoundFxClip(attackSound, transform, 1f);
     }
     ///////////////////////////////
     // Block function

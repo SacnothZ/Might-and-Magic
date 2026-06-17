@@ -116,7 +116,7 @@ public class FlyingEye : MonoBehaviour
 
         anim.SetTrigger("Death");
 
-        GetComponent<Collider2D>().enabled = false;
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(),GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>(),true);    //Ignore Collision with player on death.
 
         GameManager.gameManager.score += 50;
         Destroy(gameObject, 1f);
@@ -144,6 +144,7 @@ public class FlyingEye : MonoBehaviour
             Flip();
         }
     }
+
 
 
 

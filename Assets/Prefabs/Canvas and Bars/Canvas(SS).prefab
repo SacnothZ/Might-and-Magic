@@ -2000,7 +2000,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameOverUI
   heroData: {fileID: 0}
   gameOverTextObject: {fileID: 4557027887504603816}
+  timer: {fileID: 0}
   isGameOver: 0
+  gameOverSound: {fileID: 8300000, guid: 6290096ad33eed347899a3564fae11b9, type: 3}
 --- !u!1001 &456552928089327624
 PrefabInstance:
   m_ObjectHideFlags: 0
