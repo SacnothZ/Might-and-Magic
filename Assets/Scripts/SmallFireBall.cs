@@ -12,6 +12,8 @@ public class SmallFireBall : MonoBehaviour
 
     private Vector2 moveDirection;
     bool facingRight;
+    [Header("Audio")]
+    public AudioClip impactSound;
     
 
 
@@ -74,12 +76,14 @@ public class SmallFireBall : MonoBehaviour
             {
                 if (hero.isBlocking && isFromFront)
                 {
+                    SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
                     Destroy(gameObject);
                     return;
                 }
-                hero.heroHealth -= damage;
-                hero.m_animator.SetTrigger("Hurt");
+                hero.Hurt(damage);
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
                 Destroy(gameObject);
+                
             }
 
 
@@ -108,11 +112,12 @@ public class SmallFireBall : MonoBehaviour
             {
                 if (hero.isBlocking && isFromFront)
                 {
+                    SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
                     Destroy(gameObject);
                     return;
                 }
-                hero.heroHealth -= damage;
-                hero.m_animator.SetTrigger("Hurt");
+                hero.Hurt(damage);
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
                 Destroy(gameObject);
             }
 

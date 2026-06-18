@@ -5,7 +5,8 @@ public class FlyingEye : MonoBehaviour
     Animator anim;
     Rigidbody2D rb;
     Transform player;
-    
+    HeroKnight hero;
+
 
     [Header("Stats")]
     public int hp = 3;
@@ -19,13 +20,15 @@ public class FlyingEye : MonoBehaviour
     [Header("Attack")]
     public GameObject fireballPrefab;
     public Transform firePoint;
-
     public float attackCooldown = 2f;
     float nextAttackTime;
-
     bool facingRight = true;
 
-    HeroKnight hero;
+    [Header("Sounds")]
+    public AudioClip attackSound;
+    public AudioClip deathSound;
+
+
 
     void Start()
     {
@@ -93,7 +96,8 @@ public class FlyingEye : MonoBehaviour
         GameObject smallFireBall = Instantiate(fireballPrefab, firePoint.position, transform.rotation);
         SmallFireBall fb =smallFireBall.GetComponent<SmallFireBall>();
         fb.direction = facingRight ? 1f : -1f;
-    
+        SoundFxManager.instance.PlaySoundFxClip(attackSound, transform, 1f);
+
     }
 
     public void TakeDamage(int damage)
@@ -119,6 +123,7 @@ public class FlyingEye : MonoBehaviour
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(),GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>(),true);    //Ignore Collision with player on death.
 
         GameManager.gameManager.score += 50;
+        SoundFxManager.instance.PlaySoundFxClip(deathSound, transform, 0.5f);
         Destroy(gameObject, 1f);
 
     }

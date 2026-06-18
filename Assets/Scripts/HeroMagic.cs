@@ -7,6 +7,8 @@ public class HeroMagic : MonoBehaviour
     [Header("Magic Stats: ")]
     public float projectileSpeed = 15f;
     public float direction = 1f;
+    [Header("Audio: ")]
+    public AudioClip impactSound;
 
 
     void Start()
@@ -31,7 +33,8 @@ public class HeroMagic : MonoBehaviour
             if (goblin != null)
             {
                 goblin.TakeDamage(10);
-                
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
+
             }
 
             Skeleton skeleton = other.GetComponent<Skeleton>();
@@ -39,20 +42,23 @@ public class HeroMagic : MonoBehaviour
             if (skeleton != null)
             {
                 skeleton.TakeDamage(20);
-                
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
+
             }
 
             Necromancer necromancer = other.GetComponent<Necromancer>();
             if (necromancer != null)
             {
                 necromancer.TakeDamage(10);
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
             }
 
             FlyingEye flyingEye = other.GetComponent<FlyingEye>();
             if (flyingEye != null)
             {
                 flyingEye.TakeDamage(10);
-                
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
+
             }
 
 
@@ -61,7 +67,8 @@ public class HeroMagic : MonoBehaviour
             if (wizard != null)
             {
                 wizard.TakeDamage(0);
-                
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
+
             }
             Destroy(gameObject);
         }
@@ -78,6 +85,7 @@ public class HeroMagic : MonoBehaviour
             if (goblin != null)
             {
                 goblin.TakeDamage(10);
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
 
             }
 
@@ -86,6 +94,7 @@ public class HeroMagic : MonoBehaviour
             if (skeleton != null)
             {
                 skeleton.TakeDamage(20);
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
 
             }
 
@@ -93,12 +102,14 @@ public class HeroMagic : MonoBehaviour
             if (necromancer != null)
             {
                 necromancer.TakeDamage(0);
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
             }
 
             FlyingEye flyingEye = collision.gameObject.GetComponent<FlyingEye>();
             if (flyingEye != null)
             {
                 flyingEye.TakeDamage(10);
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
 
             }
 
@@ -108,6 +119,7 @@ public class HeroMagic : MonoBehaviour
             if (wizard != null)
             {
                 wizard.TakeDamage(0);
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
 
             }
             Destroy(gameObject);

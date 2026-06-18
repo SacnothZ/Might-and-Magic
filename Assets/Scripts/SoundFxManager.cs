@@ -31,6 +31,22 @@ public class SoundFxManager : MonoBehaviour
         float clipLength = audioSource.clip.length;
         Destroy(audioSource.gameObject,clipLength);
     }
+    public void PlayRandomSoundFxClip(AudioClip[] audioclip, Transform spawnTransform, float volume)
+    {
+        //assing random index
+        int rand = Random.Range(0, audioclip.Length);
+        //Spawn 
+        AudioSource audioSource = Instantiate(soundFxObject, spawnTransform.position, Quaternion.identity);     // don't care about rotation
+        //assign audio
+        audioSource.clip = audioclip[rand];
+        //assugin volumevalue
+        audioSource.volume = volume;
+        //play sound
+        audioSource.Play();
+        //lenght of clipt, in the end destroying gameobject.
+        float clipLength = audioSource.clip.length;
+        Destroy(audioSource.gameObject, clipLength);
+    }
 
 
 

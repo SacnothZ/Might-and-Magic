@@ -14,6 +14,7 @@ public class Skeleton : MonoBehaviour
     [Header("Stats")]
     public int hp = 20;
     public int damage = 10;
+    public EnemyDrops itemDrop;
 
     [Header("Movement")]
     public float moveSpeed = 2f;
@@ -33,10 +34,15 @@ public class Skeleton : MonoBehaviour
 
     [Header("Attack")]
     public Coroutine attacking;
-
-
     public EnemySwordAttack swordCollision;
-    public EnemyDrops itemDrop;
+
+    [Header("Sounds")]
+    public AudioClip deathSound;
+    public AudioClip hurtSound;
+    public AudioClip attackSound;
+    
+    
+
 
     void Start()
     {
@@ -71,8 +77,7 @@ public class Skeleton : MonoBehaviour
 
         if (player == null) return;
 
-        float distanceToPlayer =
-            Vector2.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
 
         if (distanceToPlayer > detectionRange)
@@ -129,8 +134,7 @@ public class Skeleton : MonoBehaviour
             rb.linearVelocity.y
         );
 
-        if (movingRight &&
-            transform.position.x >= startPosition.x + patrolDistance)
+        if (movingRight && transform.position.x >= startPosition.x + patrolDistance)
         {
             StartWait();
         }
@@ -153,6 +157,7 @@ public class Skeleton : MonoBehaviour
         Vector2 direction = (player.position - transform.position).normalized;
 
         rb.linearVelocity = new Vector2(direction.x * moveSpeed,rb.linearVelocity.y);
+        
 
         if (direction.x > 0 && !movingRight)
         {
@@ -172,6 +177,7 @@ public class Skeleton : MonoBehaviour
         if (!isDead && !hero.isDead)
         {
             anim.SetTrigger("Attack");
+            SoundFxManager.instance.PlaySoundFxClip(attackSound, transform, 1f);
             attacking = StartCoroutine(swordCollision.SwordCollider());
         }
 
@@ -192,6 +198,7 @@ public class Skeleton : MonoBehaviour
         }
         else if (hp > 0)
         {
+            SoundFxManager.instance.PlaySoundFxClip(hurtSound, transform, 0.5f);
             anim.SetTrigger("Hurt");
         }
 
@@ -207,6 +214,7 @@ public class Skeleton : MonoBehaviour
 
         rb.bodyType = RigidbodyType2D.Static;
         GetComponent<Collider2D>().enabled = false;
+        SoundFxManager.instance.PlaySoundFxClip(deathSound, transform, 0.5f);
 
         if (gameObject.name == "Level2-Skeleton(Clone)" || gameObject.name == "Level2-Skeleton")
         {

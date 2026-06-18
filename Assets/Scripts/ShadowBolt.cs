@@ -6,6 +6,9 @@ public class ShadowBolt : MonoBehaviour
     public float damage = 40f;
     public float projectileSpeed = 5f;
     public float direction = 1f;
+    [Header("Audio: ")]
+    public AudioClip impactSound;
+
 
 
     HeroKnight hero;
@@ -64,11 +67,12 @@ public class ShadowBolt : MonoBehaviour
             {
                 if (hero.isBlocking && isFromFront)
                 {
+                    SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
                     Destroy(gameObject);
                     return;
                 }
-                hero.heroHealth -= damage ;
-                hero.m_animator.SetTrigger("Hurt");
+                hero.Hurt(damage);
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
                 Destroy(gameObject);
             }
 

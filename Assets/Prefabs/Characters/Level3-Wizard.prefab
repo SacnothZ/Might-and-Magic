@@ -211,6 +211,8 @@ MonoBehaviour:
   bFireballPrefab: {fileID: 1765270625934045080, guid: 9f14400529963654dbfc8aabd6171342, type: 3}
   bFirePoint: {fileID: 9006342551149175971}
   attackCooldown: 3.5
+  magicSound: {fileID: 8300000, guid: 1829327bd5b70b4498dd0e9beefe410b, type: 3}
+  deathSound: {fileID: 8300000, guid: 5e9982ac75719e741b2a124ed4f57f42, type: 3}
 --- !u!1 &5596612164986700269
 GameObject:
   m_ObjectHideFlags: 0

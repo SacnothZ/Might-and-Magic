@@ -8,6 +8,9 @@ public class BigFireBall : MonoBehaviour
     public float direction = 1f;
     public float damage = 40f;
 
+    [Header("Audio: ")]
+    public AudioClip impactSound;
+
 
 
     HeroKnight hero;
@@ -47,8 +50,8 @@ public class BigFireBall : MonoBehaviour
 
             if (hero != null && hero.isDead!=true)
             {
-                hero.heroHealth -= damage; 
-                hero.m_animator.SetTrigger("Hurt");
+                hero.Hurt(damage);
+                SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
                 Destroy(gameObject);
             }
 

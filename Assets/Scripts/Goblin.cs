@@ -31,7 +31,9 @@ public class Goblin : MonoBehaviour
     public float waitTimer = 0f;
     public float attackCooldown = 1f;
     public float nextAttackTime = 0f;
-    
+
+    [Header("Audio")]
+    public AudioClip deathSound;
 
     
 
@@ -206,6 +208,7 @@ public class Goblin : MonoBehaviour
 
         itemDrop.NormalItemDrop();
         GameManager.gameManager.score += 10;
+        SoundFxManager.instance.PlaySoundFxClip(deathSound, transform, 0.5f);
         Destroy(gameObject, 2f);        // remove enemy GameObject after death in 2 seconds.
     }
 

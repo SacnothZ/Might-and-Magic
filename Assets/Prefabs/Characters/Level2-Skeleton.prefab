@@ -94,6 +94,8 @@ MonoBehaviour:
   swordCollider: {fileID: 3856596271271935709}
   collisonEnableWait: 0.5
   collisonEnableDuration: 0.1
+  attackSound: {fileID: 8300000, guid: 7add7b63c9b23b64b99bc8a7a03b544a, type: 3}
+  impactSound: {fileID: 8300000, guid: 097c1d8f988b81240b0325bb6d1c833b, type: 3}
 --- !u!1 &5575900438389536145
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +303,7 @@ MonoBehaviour:
   isDead: 0
   hp: 20
   damage: 10
+  itemDrop: {fileID: 0}
   moveSpeed: 2
   detectionRange: 8
   attackRange: 4
@@ -312,7 +315,9 @@ MonoBehaviour:
   attackCooldown: 1
   nextAttackTime: 0
   swordCollision: {fileID: 0}
-  itemDrop: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 8f25cebaa9b93a04f93bb493e0b21f99, type: 3}
+  hurtSound: {fileID: 8300000, guid: c4a6838bdf6ceab4b91982c668e47b4c, type: 3}
+  attackSound: {fileID: 8300000, guid: aff4b2617e069a84e9371b171f72fd9c, type: 3}
 --- !u!114 &7550042148436073842
 MonoBehaviour:
   m_ObjectHideFlags: 0

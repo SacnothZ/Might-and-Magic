@@ -8,6 +8,9 @@ public class CheckPointStatue : MonoBehaviour
     SpriteRenderer sprite;
     public bool thisCheckpointReached = false;
 
+    [Header("Audio")]
+    public AudioClip checkpointReachedSound;
+
     void Start()
     {
         hero = GameObject.Find("Player").GetComponent<HeroKnight>();
@@ -27,6 +30,8 @@ public class CheckPointStatue : MonoBehaviour
             GameManager.gameManager.heroCheckpointLocation = new Vector2(hero.transform.position.x, hero.transform.position.y);
             thisCheckpointReached = true;
             sprite.color = Color.white;
+            hero.hasCheckpoint= true;
+            SoundFxManager.instance.PlaySoundFxClip(checkpointReachedSound, transform, 1f);
         }
     }
 

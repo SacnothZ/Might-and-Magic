@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HeroMagic
   projectileSpeed: 15
   direction: 1
+  impactSound: {fileID: 8300000, guid: 097c1d8f988b81240b0325bb6d1c833b, type: 3}
 --- !u!50 &8665719730648354022
 Rigidbody2D:
   serializedVersion: 5

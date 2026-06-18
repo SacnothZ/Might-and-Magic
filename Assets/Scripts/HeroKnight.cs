@@ -11,8 +11,8 @@ public class HeroKnight : MonoBehaviour
     [SerializeField] float m_rollForce = 6.0f;
     [SerializeField] bool m_noBlood = false;
     [SerializeField] GameObject m_slideDust;
-   
-    
+
+
 
 
 
@@ -55,7 +55,12 @@ public class HeroKnight : MonoBehaviour
     public float nextMagicTime = 0f;
 
     [Header("Sounds")]
-    public AudioClip attackSound;
+    public AudioClip[] attackSound;
+    public AudioClip deathSound;
+    public AudioClip[] randomHurtSound;
+    public AudioClip magicSound;
+    public AudioClip reviveSound;
+    public bool hasCheckpoint = false;
 
  
 
@@ -224,6 +229,8 @@ public class HeroKnight : MonoBehaviour
         m_body2d.linearVelocity = Vector2.zero;
         m_animator.SetTrigger("Death");
         StartCoroutine(Revive());
+        SoundFxManager.instance.PlaySoundFxClip(deathSound, transform, 1f);
+
     }
 
     public IEnumerator Revive()
@@ -237,6 +244,12 @@ public class HeroKnight : MonoBehaviour
             transform.position = GameManager.gameManager.heroCheckpointLocation;
             m_animator.Play("Idle");
             GameManager.gameManager.heroLives--;
+
+            if (hasCheckpoint)
+            {
+                SoundFxManager.instance.PlaySoundFxClip(reviveSound, transform, 1f);
+            }
+            
         }
         else
         {
@@ -269,7 +282,7 @@ public class HeroKnight : MonoBehaviour
         
         m_animator.SetTrigger("Attack" + m_currentAttack);  // Call one of three attack animations "Attack1", "Attack2", "Attack3"
         m_timeSinceAttack = 0.0f;       // Reset timer
-        SoundFxManager.instance.PlaySoundFxClip(attackSound, transform, 1f);
+        SoundFxManager.instance.PlayRandomSoundFxClip(attackSound, transform, 1f);
     }
     ///////////////////////////////
     // Block function
@@ -301,9 +314,11 @@ public class HeroKnight : MonoBehaviour
         m_groundSensor.Disable(0.2f);
     }
 
-    public void Hurt()
+    public void Hurt(float damage)
     {
+        heroHealth -= damage;
         m_animator.SetTrigger("Hurt");
+        SoundFxManager.instance.PlayRandomSoundFxClip(randomHurtSound, transform, 1f);
     }
 
 
@@ -373,6 +388,7 @@ public class HeroKnight : MonoBehaviour
                 scale.x *= -1;
                 heroMagic.transform.localScale = scale;
             }
+            SoundFxManager.instance.PlaySoundFxClip(magicSound, transform, 1f);
         }
 
     }

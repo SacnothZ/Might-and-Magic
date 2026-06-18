@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Necromancer : MonoBehaviour
 {
+    HeroKnight hero;
+    EnemyDrops itemDrop;
+
     Animator anim;
     Rigidbody2D rb;
     Transform player;
@@ -20,13 +23,14 @@ public class Necromancer : MonoBehaviour
     public GameObject shadowBoltPrefab;
     public Transform shadowBoltPoint;
     public float attackCooldown = 2f;
-
-
     float nextAttackTime;
-
     bool facingRight = true;
-    HeroKnight hero;
-    EnemyDrops itemDrop;
+
+    [Header("Audio: ")]
+    public AudioClip attackSound;
+    public AudioClip hurtSound;
+    public AudioClip deathSound;
+
 
 
 
@@ -78,6 +82,10 @@ public class Necromancer : MonoBehaviour
         if (isDead) return;
 
         hp -= damage;
+        if (hp > 0)
+        {
+            SoundFxManager.instance.PlaySoundFxClip(hurtSound, transform, 0.5f);
+        }
 
         if (hp <= 0)
         {
@@ -97,7 +105,7 @@ public class Necromancer : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
 
         itemDrop.KeyDrop();
-
+        SoundFxManager.instance.PlaySoundFxClip(deathSound, transform, 0.5f);
         Destroy(gameObject, 1f);
 
     }
@@ -132,6 +140,7 @@ public class Necromancer : MonoBehaviour
         {
             anim.SetTrigger("Attack");
             yield return new WaitForSeconds(0.5f);
+            SoundFxManager.instance.PlaySoundFxClip(attackSound, transform, 1f);
             GameObject shadowBall = Instantiate(shadowBoltPrefab, shadowBoltPoint.position, transform.rotation);
             ShadowBolt sb = shadowBall.GetComponent<ShadowBolt>();
             sb.direction = facingRight ? 1f : -1f;

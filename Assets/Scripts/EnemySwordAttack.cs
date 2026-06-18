@@ -7,6 +7,9 @@ public class EnemySwordAttack : MonoBehaviour
     [Range(0.5f, 1)] public float collisonEnableWait = 0.5f;
     [Range(0.1f, 1)] public float collisonEnableDuration = 0.1f;
 
+    [Header("Audio")]
+    public AudioClip attackSound;
+    public AudioClip impactSound;
 
 
 
@@ -22,6 +25,7 @@ public class EnemySwordAttack : MonoBehaviour
     {
 
             yield return new WaitForSeconds(collisonEnableWait);
+            SoundFxManager.instance.PlaySoundFxClip(attackSound, transform, 1f);
             swordCollider.enabled = true;
             yield return new WaitForSeconds(collisonEnableDuration);
             swordCollider.enabled = false;
@@ -47,6 +51,7 @@ public class EnemySwordAttack : MonoBehaviour
 
                 if (hero.isBlocking && isFromFront)
                 {
+                    SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
                     return;
                 }
 
@@ -56,13 +61,13 @@ public class EnemySwordAttack : MonoBehaviour
                  
                 if (transform.parent.name == "Level1-Goblin" || transform.parent.name == "Level1-Goblin(Clone)")
                 {
-                    hero.heroHealth -= 10;
-                    hero.m_animator.SetTrigger("Hurt");
+                    SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
+                    hero.Hurt(10);
                 }
                 else if (transform.parent.name == "Level2-Skeleton" || transform.parent.name == "Level1-RedSkeleton" || transform.parent.name == "Level2-Skeleton(Clone)" || transform.parent.name == "Level1-RedSkeleton(Clone)")
                 {
-                    hero.heroHealth -= 25;
-                    hero.m_animator.SetTrigger("Hurt");
+                    SoundFxManager.instance.PlaySoundFxClip(impactSound, transform, 1f);
+                    hero.Hurt(25);
                 }
                 
 

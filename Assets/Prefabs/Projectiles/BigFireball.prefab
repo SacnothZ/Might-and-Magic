@@ -166,4 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BigFireBall
   projectileSpeed: 5
+  protectileDuration: 8
   direction: 1
+  damage: 40
+  impactSound: {fileID: 8300000, guid: 097c1d8f988b81240b0325bb6d1c833b, type: 3}

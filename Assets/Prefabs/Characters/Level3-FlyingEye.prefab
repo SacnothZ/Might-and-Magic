@@ -242,3 +242,5 @@ MonoBehaviour:
   fireballPrefab: {fileID: 5619292087281635759, guid: a57da2bd4f8b0e14d968be101dfef8e2, type: 3}
   firePoint: {fileID: 4901791637998407753}
   attackCooldown: 2
+  attackSound: {fileID: 8300000, guid: 1829327bd5b70b4498dd0e9beefe410b, type: 3}
+  deathSound: {fileID: 8300000, guid: 88ca93be99bc0ae4e8efc78c04d2fa0d, type: 3}

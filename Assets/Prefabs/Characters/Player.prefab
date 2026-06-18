@@ -351,7 +351,18 @@ MonoBehaviour:
   firePoint: {fileID: 1953144852977158715}
   magicCooldown: 2
   nextMagicTime: 0
-  attackSound: {fileID: 8300000, guid: 2b21ef916f6943c439b71a7c74568878, type: 3}
+  attackSound:
+  - {fileID: 8300000, guid: 2b21ef916f6943c439b71a7c74568878, type: 3}
+  - {fileID: 8300000, guid: b51d7230a17ec044283a09f4de2e73a5, type: 3}
+  deathSound: {fileID: 8300000, guid: 7c7699cb0f866664a98e5f1bff99f0d0, type: 3}
+  randomHurtSound:
+  - {fileID: 8300000, guid: 5a6ef2ba77d338b42ab86c76015da406, type: 3}
+  - {fileID: 8300000, guid: 450832b07c264b744b51de2ace98bcc2, type: 3}
+  - {fileID: 8300000, guid: f744b5d8f1992f54cbca0dc36f3bd696, type: 3}
+  - {fileID: 8300000, guid: 3bada87d0111db042bce0d942bc65e12, type: 3}
+  magicSound: {fileID: 8300000, guid: 1829327bd5b70b4498dd0e9beefe410b, type: 3}
+  reviveSound: {fileID: 8300000, guid: 5460ff4f83e452747ab314fd2e0a4088, type: 3}
+  hasCheckpoint: 0
 --- !u!95 &8622843177948119843
 Animator:
   serializedVersion: 7

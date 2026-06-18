@@ -5,6 +5,7 @@ public class Wizard : MonoBehaviour
     Animator anim;
     Rigidbody2D rb;
     Transform player;
+    HeroKnight hero;
 
     [Header("Stats")]
     public int hp = 10;
@@ -20,10 +21,13 @@ public class Wizard : MonoBehaviour
     public Transform bFirePoint;
     public float attackCooldown = 2f;
     float nextAttackTime;
-
     bool facingRight = true;
 
-    HeroKnight hero;
+    [Header("Audio")]
+    public AudioClip magicSound;
+    public AudioClip deathSound;
+
+  
 
     void Start()
     {
@@ -65,6 +69,7 @@ public class Wizard : MonoBehaviour
         if (hero.isDead != true)
         {
             anim.SetTrigger("Attack");
+            SoundFxManager.instance.PlaySoundFxClip(magicSound, transform, 1f);
             GameObject bigFireBall = Instantiate(bFireballPrefab, bFirePoint.position, transform.rotation);
             BigFireBall fb = bigFireBall.GetComponent<BigFireBall>();
             fb.direction = facingRight ? 1f : -1f;
@@ -94,6 +99,7 @@ public class Wizard : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
 
+        SoundFxManager.instance.PlaySoundFxClip(deathSound, transform, 0.5f);
         Destroy(gameObject, 1f);
 
     }

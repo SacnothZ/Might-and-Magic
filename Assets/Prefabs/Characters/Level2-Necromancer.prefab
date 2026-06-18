@@ -138,6 +138,9 @@ MonoBehaviour:
   shadowBoltPrefab: {fileID: 8273620608830805724, guid: c59877d058d18a84cb6b98d484b8018e, type: 3}
   shadowBoltPoint: {fileID: 2060669511784274157}
   attackCooldown: 2
+  attackSound: {fileID: 8300000, guid: 1829327bd5b70b4498dd0e9beefe410b, type: 3}
+  hurtSound: {fileID: 8300000, guid: 5e9982ac75719e741b2a124ed4f57f42, type: 3}
+  deathSound: {fileID: 8300000, guid: 19aa0a28ea9cdbb4c97eea69c7bba60c, type: 3}
 --- !u!61 &6335594201451601318
 BoxCollider2D:
   m_ObjectHideFlags: 0

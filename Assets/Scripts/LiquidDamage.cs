@@ -25,8 +25,7 @@ public class LiquidDamage : MonoBehaviour
         {
             if (gameObject.CompareTag("Toxic"))
             {
-                hero.heroHealth -= 10;
-                hero.Hurt();
+                hero.Hurt(10);
                 damageCooldown = 2f;
             }
             else if (gameObject.CompareTag("Lava"))
