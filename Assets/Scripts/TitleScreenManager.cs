@@ -25,6 +25,7 @@ public class TitleScreenManager : MonoBehaviour
     public Button level2Button;
     public Button level3Button;
     public Button backFromStageButton;
+    public bool levelSelectorOn = false;
 
     [Header("Options Buttons")]
     public Button backFromOptionsButton;
@@ -33,12 +34,15 @@ public class TitleScreenManager : MonoBehaviour
     public Slider soundSlider;
     public Slider musicSlider;
     public Toggle fullscreenToggle;
+    public bool optionsMenuOn = false;
 
     void Start()
     {
         mainMenuPanel.SetActive(false);
         levelSelectorPanel.SetActive(false);
         optionsPanel.SetActive(false);
+        levelSelectorOn = false;
+        optionsMenuOn = false;
 
         StartCoroutine(PressAnyKeyBlink());
 
@@ -58,6 +62,10 @@ public class TitleScreenManager : MonoBehaviour
             keyPressed = true;
             pressAnyKeyText.enabled = false;
             mainMenuPanel.SetActive(true);
+        }
+        if(Input.GetKeyDown("escape") && (optionsMenuOn || levelSelectorOn))
+        {
+            BackToMainMenu();
         }
     }
 
@@ -83,6 +91,7 @@ public class TitleScreenManager : MonoBehaviour
     {
         mainMenuPanel.SetActive(false);
         levelSelectorPanel.SetActive(true);
+        levelSelectorOn = true;
         optionsPanel.SetActive(false);
     }
 
@@ -90,7 +99,9 @@ public class TitleScreenManager : MonoBehaviour
     {
         mainMenuPanel.SetActive(false);
         optionsPanel.SetActive(true);
+        optionsMenuOn = true;
         levelSelectorPanel.SetActive(false);
+        
     }
 
     public void BackToMainMenu()
@@ -98,6 +109,8 @@ public class TitleScreenManager : MonoBehaviour
         mainMenuPanel.SetActive(true);
         levelSelectorPanel.SetActive(false);
         optionsPanel.SetActive(false);
+        optionsMenuOn = false;
+        levelSelectorOn = false;
     }
 
     public void ExitButton()

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class HeroKnight : MonoBehaviour
 {
@@ -61,6 +62,9 @@ public class HeroKnight : MonoBehaviour
     public AudioClip magicSound;
     public AudioClip reviveSound;
     public bool hasCheckpoint = false;
+
+    [Header("Limits")]
+    public float level2LeftLimit = -32f;
 
  
 
@@ -203,7 +207,15 @@ public class HeroKnight : MonoBehaviour
                 m_animator.SetInteger("AnimState", 0);
         }
 
+        //////////////////////////////////
+        // Limit character on scenes
+        //////////////////////////////////
 
+
+        if (SceneManager.GetActiveScene().name == "2-Level 2" && transform.position.x < level2LeftLimit)
+        {
+            transform.position = new Vector2(level2LeftLimit, transform.position.y);
+        }
 
     }
 

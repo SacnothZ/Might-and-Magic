@@ -25,7 +25,7 @@ public class MoveCamera : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "2-Level 2")
         {
-            LeftLimitX = -28f;
+            LeftLimitX = -20f;
             RightLimitX = 300f;
             LowerLimitY = -0.7f;
 

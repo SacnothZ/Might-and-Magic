@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
 
     [Header("Options Buttons")]
     public Button backFromOptionsButton;
+    public bool optionsMenuOn = false;
 
     [Header("Options UI")]
     public Slider soundSlider;
@@ -56,12 +57,20 @@ public class PauseMenu : MonoBehaviour
             PauseOrUnpauseGame();
 
         }
-        else if (menuActive && Input.GetKeyDown("escape"))
+        else if (menuActive && Input.GetKeyDown("escape") && !optionsMenuOn)
         {
             mainMenuPanel.SetActive(false);
             menuImage.SetActive(false);
             menuActive = false;
             PauseOrUnpauseGame();
+        }
+        else if (menuActive && Input.GetKeyDown("escape") && optionsMenuOn)
+        {
+            mainMenuPanel.SetActive(true);
+            menuImage.SetActive(true);
+            optionsPanel.SetActive(false);
+            optionsMenuOn = false;
+            
         }
 
     }
@@ -90,6 +99,7 @@ public class PauseMenu : MonoBehaviour
     {
         mainMenuPanel.SetActive(false);
         optionsPanel.SetActive(true);
+        optionsMenuOn = true;
     }
 
     public void BackToMainMenu()
@@ -103,30 +113,7 @@ public class PauseMenu : MonoBehaviour
     }
 
 
-    ////////////////
-    // Level Select 
-    ////////////////
 
-    //public void LoadLevel1New()
-    //{
-    //    GameManager.gameManager.heroLives = 4;
-    //    GameManager.gameManager.LoadLevel1();
-    //}
-
-    //public void LoadLevel2New()
-    //{
-    //    GameManager.gameManager.heroLives = 4;
-    //    GameManager.gameManager.ResetScore();
-    //    GameManager.gameManager.LoadLevel2();
-    //}
-
-    //public void LoadLevel3New()
-    //{
-    //    GameManager.gameManager.heroLives = 4;
-    //    GameManager.gameManager.ResetScore();
-    //    GameManager.gameManager.ResetKeys();
-    //    GameManager.gameManager.LoadLevel3();
-    //}
 
     ////////////////
     //Option Buttons 
@@ -152,6 +139,7 @@ public class PauseMenu : MonoBehaviour
     {
         mainMenuPanel.SetActive(true);
         optionsPanel.SetActive(false);
+        optionsMenuOn = false;
     }
 
 
