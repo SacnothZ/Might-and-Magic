@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     public int score;
     public int extraScore;
     public int timeRemaining = 300;
+
+    [Header("High Score: ")]
+    public int highScore = 0;
+    public bool hasHighScore = false;
     
     [Header("Hero specific: ")]
     public int heroLives = 4;
@@ -21,7 +25,6 @@ public class GameManager : MonoBehaviour
     [Header("Keys: ")]
     public TMP_Text keyText;
     public int keyAmount = 0;
-
     public bool levelEnded = false;
 
 

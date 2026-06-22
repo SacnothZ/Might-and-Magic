@@ -126,6 +126,11 @@ public class LevelCompletePrefab : MonoBehaviour
             GameManager.gameManager.score += GameManager.gameManager.extraScore;
             MusicManager.instance.musicSource.Stop();
             SoundFxManager.instance.PlaySoundFxClip(levelCompleteSound, transform, 1f);
+            GameManager.gameManager.hasHighScore = true;
+            if (GameManager.gameManager.highScore < GameManager.gameManager.score)
+            {
+                GameManager.gameManager.highScore = GameManager.gameManager.score;
+            }
 
         }
     }

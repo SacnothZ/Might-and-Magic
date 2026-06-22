@@ -9,6 +9,8 @@ public class GameOverUI : MonoBehaviour
     public TimeLeft timer;
     public bool isGameOver = false;
     public AudioClip gameOverSound;
+
+
     
 
     void Start()

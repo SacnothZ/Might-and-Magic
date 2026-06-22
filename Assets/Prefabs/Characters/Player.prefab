@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 4764727879744555372}
   - component: {fileID: 2371719991007876445}
   - component: {fileID: 3288067971371644119}
+  - component: {fileID: 5236814119193443497}
   - component: {fileID: 6250616845918657552}
   m_Layer: 0
   m_Name: Main Camera
@@ -231,6 +232,18 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &5236814119193443497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4224720263059167878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c805a49b04bd00e4d8186f3b1a7381ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraScaler
 --- !u!114 &6250616845918657552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +376,7 @@ MonoBehaviour:
   magicSound: {fileID: 8300000, guid: 1829327bd5b70b4498dd0e9beefe410b, type: 3}
   reviveSound: {fileID: 8300000, guid: 5460ff4f83e452747ab314fd2e0a4088, type: 3}
   hasCheckpoint: 0
+  level2LeftLimit: 32
 --- !u!95 &8622843177948119843
 Animator:
   serializedVersion: 7
